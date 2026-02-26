@@ -25,6 +25,7 @@ export default function DevBanner() {
     window.dispatchEvent(new Event("storage"));
   }, []);
 
+  if (process.env.NODE_ENV !== "development") return null;
   if (!identity.userId && !identity.creatorId) return null;
 
   return (

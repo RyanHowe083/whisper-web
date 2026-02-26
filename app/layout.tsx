@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import DevBanner from "@/components/DevBanner";
+import DevIdentityPanel from "@/components/DevIdentityPanel";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -17,6 +18,7 @@ export default function RootLayout({
       <body>
         {children}
         <DevBanner />
+        <DevIdentityPanel />
       </body>
     </html>
   );
