@@ -56,6 +56,11 @@ export interface CreatorProfileResponse {
   createdAt: string;
 }
 
+export interface WhisperCreateRequest {
+  postId: string;
+  message: string;
+}
+
 export interface HealthResponse {
   status: string;
 }
