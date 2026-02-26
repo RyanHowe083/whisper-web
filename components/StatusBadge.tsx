@@ -3,30 +3,34 @@ interface StatusBadgeProps {
 }
 
 const STATUS_STYLES: Record<string, { background: string; color: string }> = {
-  CREATED: { background: "#eff6ff", color: "#1d4ed8" },
-  REPLIED: { background: "#f0fdf4", color: "#15803d" },
-  STITCHED: { background: "#faf5ff", color: "#7e22ce" },
-  EXPIRED: { background: "#f3f4f6", color: "#6b7280" },
+  CREATED: { background: "var(--color-info-light)", color: "var(--color-info)" },
+  REPLIED: { background: "var(--color-success-light)", color: "var(--color-success)" },
+  STITCHED: { background: "var(--color-primary-light)", color: "var(--color-primary)" },
+  EXPIRED: { background: "var(--color-border-light)", color: "var(--color-text-muted)" },
 };
 
+const FALLBACK_STYLE = { background: "var(--color-border-light)", color: "var(--color-text-muted)" };
+
 export default function StatusBadge({ status }: StatusBadgeProps) {
-  const style = STATUS_STYLES[status] ?? STATUS_STYLES.EXPIRED;
+  const resolved = STATUS_STYLES[status] ?? FALLBACK_STYLE;
 
   return (
     <span
       style={{
         display: "inline-block",
-        padding: "2px 8px",
-        borderRadius: "12px",
-        fontSize: "11px",
+        padding: "2px var(--space-sm)",
+        borderRadius: "var(--radius-pill)",
+        fontSize: "var(--font-xs)",
         fontWeight: 600,
         textTransform: "uppercase",
         letterSpacing: "0.5px",
-        background: style.background,
-        color: style.color,
+        lineHeight: "var(--line-tight)",
+        background: resolved.background,
+        color: resolved.color,
       }}
     >
       {status}
     </span>
   );
 }
+

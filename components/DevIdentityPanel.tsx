@@ -31,6 +31,22 @@ function getServerIdentitySnapshot(): DevIdentity {
   return cachedIdentity;
 }
 
+const inputStyle: React.CSSProperties = {
+  width: "100%",
+  padding: "var(--space-sm)",
+  border: "1px solid var(--color-border)",
+  borderRadius: "var(--radius-sm)",
+  fontSize: "var(--font-base)",
+};
+
+const labelStyle: React.CSSProperties = {
+  display: "block",
+  marginBottom: "var(--space-xs)",
+  fontWeight: 600,
+  fontSize: "var(--font-sm)",
+  color: "var(--color-warn)",
+};
+
 export default function DevIdentityPanel() {
   const identity = useSyncExternalStore(
     subscribeStorage,
@@ -62,12 +78,22 @@ export default function DevIdentityPanel() {
     window.dispatchEvent(new Event("storage"));
   };
 
+  const panelButtonStyle: React.CSSProperties = {
+    flex: 1,
+    border: "none",
+    borderRadius: "var(--radius-sm)",
+    padding: "var(--space-sm)",
+    cursor: "pointer",
+    fontWeight: 600,
+    fontSize: "var(--font-sm)",
+  };
+
   return (
     <div
       style={{
         position: "fixed",
-        top: 8,
-        right: 8,
+        top: "var(--space-sm)",
+        right: "var(--space-sm)",
         zIndex: 10000,
       }}
     >
@@ -76,9 +102,9 @@ export default function DevIdentityPanel() {
         style={{
           background: "#fbbf24",
           border: "2px solid #d97706",
-          borderRadius: "6px",
-          padding: "4px 10px",
-          fontSize: "11px",
+          borderRadius: "var(--radius-md)",
+          padding: "var(--space-xs) var(--space-md)",
+          fontSize: "var(--font-xs)",
           fontWeight: 700,
           cursor: "pointer",
           textTransform: "uppercase",
@@ -89,74 +115,53 @@ export default function DevIdentityPanel() {
       {visible && (
         <div
           style={{
-            marginTop: 4,
-            background: "#fffbeb",
+            marginTop: "var(--space-xs)",
+            background: "var(--color-warn-light)",
             border: "2px solid #d97706",
-            borderRadius: "8px",
-            padding: "12px",
+            borderRadius: "var(--radius-lg)",
+            padding: "var(--space-lg)",
             width: 280,
-            fontSize: "13px",
           }}
         >
           <div
             style={{
               fontWeight: 700,
-              fontSize: "11px",
-              color: "#92400e",
-              marginBottom: 8,
+              fontSize: "var(--font-xs)",
+              color: "var(--color-warn)",
+              marginBottom: "var(--space-md)",
               textTransform: "uppercase",
               letterSpacing: "0.5px",
             }}
           >
             ⚠ Dev Only — Identity Headers
           </div>
-          <label style={{ display: "block", marginBottom: 4, fontWeight: 600 }}>
-            X-User-Id
-          </label>
-          <input
-            type="text"
-            value={userId}
-            onChange={(e) => setUserId(e.target.value)}
-            placeholder="UUID"
-            style={{
-              width: "100%",
-              padding: "6px 8px",
-              border: "1px solid #d1d5db",
-              borderRadius: "4px",
-              fontSize: "13px",
-              marginBottom: 8,
-            }}
-          />
-          <label style={{ display: "block", marginBottom: 4, fontWeight: 600 }}>
-            X-Creator-Id
-          </label>
-          <input
-            type="text"
-            value={creatorId}
-            onChange={(e) => setCreatorId(e.target.value)}
-            placeholder="UUID"
-            style={{
-              width: "100%",
-              padding: "6px 8px",
-              border: "1px solid #d1d5db",
-              borderRadius: "4px",
-              fontSize: "13px",
-              marginBottom: 10,
-            }}
-          />
-          <div style={{ display: "flex", gap: 6 }}>
+          <div style={{ marginBottom: "var(--space-md)" }}>
+            <label style={labelStyle}>X-User-Id</label>
+            <input
+              type="text"
+              value={userId}
+              onChange={(e) => setUserId(e.target.value)}
+              placeholder="UUID"
+              style={inputStyle}
+            />
+          </div>
+          <div style={{ marginBottom: "var(--space-lg)" }}>
+            <label style={labelStyle}>X-Creator-Id</label>
+            <input
+              type="text"
+              value={creatorId}
+              onChange={(e) => setCreatorId(e.target.value)}
+              placeholder="UUID"
+              style={inputStyle}
+            />
+          </div>
+          <div style={{ display: "flex", gap: "var(--space-sm)" }}>
             <button
               onClick={handleApply}
               style={{
-                flex: 1,
+                ...panelButtonStyle,
                 background: "#d97706",
                 color: "#fff",
-                border: "none",
-                borderRadius: "4px",
-                padding: "6px",
-                cursor: "pointer",
-                fontWeight: 600,
-                fontSize: "12px",
               }}
             >
               Apply
@@ -164,15 +169,9 @@ export default function DevIdentityPanel() {
             <button
               onClick={handleClear}
               style={{
-                flex: 1,
-                background: "#e5e7eb",
-                color: "#374151",
-                border: "none",
-                borderRadius: "4px",
-                padding: "6px",
-                cursor: "pointer",
-                fontWeight: 600,
-                fontSize: "12px",
+                ...panelButtonStyle,
+                background: "var(--color-border-light)",
+                color: "var(--color-text-secondary)",
               }}
             >
               Clear
@@ -183,3 +182,4 @@ export default function DevIdentityPanel() {
     </div>
   );
 }
+

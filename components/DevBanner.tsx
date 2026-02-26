@@ -44,17 +44,17 @@ export default function DevBanner() {
         bottom: 0,
         left: 0,
         right: 0,
-        background: "#fef3c7",
+        background: "var(--color-warn-light)",
         borderTop: "2px solid #f59e0b",
-        padding: "8px 16px",
-        fontSize: "13px",
+        padding: "var(--space-sm) var(--space-lg)",
+        fontSize: "var(--font-base)",
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
         zIndex: 9999,
       }}
     >
-      <span>
+      <span style={{ color: "var(--color-warn)" }}>
         Dev Identity →
         {identity.userId && ` User: ${identity.userId}`}
         {identity.creatorId && ` Creator: ${identity.creatorId}`}
@@ -62,12 +62,14 @@ export default function DevBanner() {
       <button
         onClick={handleClear}
         style={{
-          background: "#f59e0b",
-          border: "none",
-          borderRadius: "4px",
-          padding: "4px 12px",
+          background: "transparent",
+          border: "1px solid var(--color-warn-border)",
+          borderRadius: "var(--radius-sm)",
+          padding: "var(--space-xs) var(--space-md)",
           cursor: "pointer",
           fontWeight: 600,
+          fontSize: "var(--font-sm)",
+          color: "var(--color-warn)",
         }}
       >
         Clear

@@ -6,33 +6,32 @@ interface StitchedItemProps {
 
 export default function StitchedItem({ stitch }: StitchedItemProps) {
   return (
-    <div
+    <article
       style={{
-        padding: "20px",
-        background: "#fff",
-        border: "1px solid #e5e7eb",
-        borderRadius: "8px",
-        marginBottom: 12,
+        padding: "var(--space-2xl)",
+        background: "var(--color-surface)",
+        border: "1px solid var(--color-border)",
+        borderRadius: "var(--radius-lg)",
       }}
     >
       <div
         style={{
-          fontSize: "14px",
-          color: "#6b7280",
+          fontSize: "var(--font-md)",
+          color: "var(--color-text-muted)",
           fontStyle: "italic",
-          lineHeight: 1.5,
-          marginBottom: 12,
-          paddingLeft: 12,
-          borderLeft: "3px solid #e5e7eb",
+          lineHeight: "var(--line-normal)",
+          marginBottom: "var(--space-lg)",
+          paddingLeft: "var(--space-md)",
+          borderLeft: "3px solid var(--color-border)",
         }}
       >
         {stitch.publicPrompt}
       </div>
       <div
         style={{
-          fontSize: "15px",
-          color: "#1f2937",
-          lineHeight: 1.6,
+          fontSize: "var(--font-lg)",
+          color: "var(--color-text)",
+          lineHeight: "var(--line-relaxed)",
         }}
       >
         {stitch.publicResponse}
@@ -40,9 +39,9 @@ export default function StitchedItem({ stitch }: StitchedItemProps) {
       {stitch.publishedAt && (
         <div
           style={{
-            marginTop: 10,
-            fontSize: "12px",
-            color: "#9ca3af",
+            marginTop: "var(--space-md)",
+            fontSize: "var(--font-sm)",
+            color: "var(--color-text-faint)",
           }}
         >
           {new Date(stitch.publishedAt).toLocaleDateString(undefined, {
@@ -52,7 +51,7 @@ export default function StitchedItem({ stitch }: StitchedItemProps) {
           })}
         </div>
       )}
-    </div>
+    </article>
   );
 }
 

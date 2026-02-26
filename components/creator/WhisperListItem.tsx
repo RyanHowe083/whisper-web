@@ -27,10 +27,10 @@ export default function WhisperListItem({
         display: "block",
         width: "100%",
         textAlign: "left",
-        padding: "12px 16px",
+        padding: "var(--space-md) var(--space-lg)",
         border: "none",
-        borderBottom: "1px solid #f3f4f6",
-        background: selected ? "#f0f9ff" : "#fff",
+        borderBottom: "1px solid var(--color-border-light)",
+        background: selected ? "var(--color-info-light)" : "var(--color-surface)",
         cursor: "pointer",
         transition: "background 0.15s",
       }}
@@ -40,7 +40,7 @@ export default function WhisperListItem({
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          marginBottom: 4,
+          marginBottom: "var(--space-xs)",
         }}
       >
         <StatusBadge status={whisper.status} />
@@ -48,10 +48,10 @@ export default function WhisperListItem({
       </div>
       <p
         style={{
-          fontSize: "14px",
-          color: "#374151",
+          fontSize: "var(--font-md)",
+          color: "var(--color-text-secondary)",
           margin: 0,
-          lineHeight: 1.4,
+          lineHeight: "var(--line-normal)",
         }}
       >
         {preview}
@@ -59,10 +59,10 @@ export default function WhisperListItem({
       <div
         style={{
           display: "flex",
-          gap: 8,
-          marginTop: 6,
-          fontSize: "11px",
-          color: "#9ca3af",
+          gap: "var(--space-sm)",
+          marginTop: "var(--space-sm)",
+          fontSize: "var(--font-xs)",
+          color: "var(--color-text-faint)",
         }}
       >
         {whisper.creatorReaction && <span>✦ Reacted</span>}
@@ -72,3 +72,4 @@ export default function WhisperListItem({
     </button>
   );
 }
+

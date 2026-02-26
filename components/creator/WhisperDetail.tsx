@@ -22,17 +22,17 @@ export default function WhisperDetail({
   const canStitch = whisper.status !== "STITCHED";
 
   return (
-    <div style={{ padding: "20px 24px" }}>
+    <div style={{ padding: "var(--space-xl) var(--space-2xl)" }}>
       <button
         onClick={onBack}
         style={{
           background: "none",
           border: "none",
-          color: "#6b7280",
-          fontSize: "13px",
+          color: "var(--color-text-muted)",
+          fontSize: "var(--font-base)",
           cursor: "pointer",
           padding: 0,
-          marginBottom: 16,
+          marginBottom: "var(--space-xl)",
         }}
       >
         ← Back to list
@@ -42,8 +42,8 @@ export default function WhisperDetail({
         style={{
           display: "flex",
           alignItems: "center",
-          gap: 10,
-          marginBottom: 16,
+          gap: "var(--space-md)",
+          marginBottom: "var(--space-xl)",
         }}
       >
         <StatusBadge status={whisper.status} />
@@ -52,17 +52,17 @@ export default function WhisperDetail({
 
       <div
         style={{
-          padding: "16px",
-          background: "#f9fafb",
-          borderRadius: "8px",
-          marginBottom: 20,
+          padding: "var(--space-lg)",
+          background: "var(--color-border-light)",
+          borderRadius: "var(--radius-lg)",
+          marginBottom: "var(--space-2xl)",
         }}
       >
         <p
           style={{
-            fontSize: "15px",
-            color: "#1f2937",
-            lineHeight: 1.6,
+            fontSize: "var(--font-lg)",
+            color: "var(--color-text)",
+            lineHeight: "var(--line-relaxed)",
             margin: 0,
           }}
         >
@@ -73,13 +73,13 @@ export default function WhisperDetail({
       {whisper.creatorReaction && (
         <div
           style={{
-            padding: "10px 14px",
-            background: "#fffbeb",
-            border: "1px solid #fde68a",
-            borderRadius: "6px",
-            marginBottom: 12,
-            fontSize: "13px",
-            color: "#92400e",
+            padding: "var(--space-md) var(--space-lg)",
+            background: "var(--color-warn-light)",
+            border: "1px solid var(--color-warn-border)",
+            borderRadius: "var(--radius-md)",
+            marginBottom: "var(--space-md)",
+            fontSize: "var(--font-base)",
+            color: "var(--color-warn)",
           }}
         >
           Reaction: {whisper.creatorReaction}
@@ -89,37 +89,37 @@ export default function WhisperDetail({
       {whisper.replyMessage && (
         <div
           style={{
-            padding: "12px 14px",
-            background: "#f0fdf4",
-            border: "1px solid #bbf7d0",
-            borderRadius: "6px",
-            marginBottom: 12,
+            padding: "var(--space-md) var(--space-lg)",
+            background: "var(--color-success-light)",
+            border: "1px solid var(--color-success-border)",
+            borderRadius: "var(--radius-md)",
+            marginBottom: "var(--space-md)",
           }}
         >
           <div
             style={{
-              fontSize: "11px",
+              fontSize: "var(--font-xs)",
               fontWeight: 600,
-              color: "#15803d",
+              color: "var(--color-success)",
               textTransform: "uppercase",
               letterSpacing: "0.5px",
-              marginBottom: 4,
+              marginBottom: "var(--space-xs)",
             }}
           >
             Private Reply
           </div>
           <p
             style={{
-              fontSize: "14px",
-              color: "#1f2937",
+              fontSize: "var(--font-md)",
+              color: "var(--color-text)",
               margin: 0,
-              lineHeight: 1.5,
+              lineHeight: "var(--line-normal)",
             }}
           >
             {whisper.replyMessage}
           </p>
           {whisper.repliedAt && (
-            <div style={{ marginTop: 6 }}>
+            <div style={{ marginTop: "var(--space-sm)" }}>
               <TimeDisplay iso={whisper.repliedAt} />
             </div>
           )}
@@ -129,13 +129,13 @@ export default function WhisperDetail({
       {whisper.status === "STITCHED" && (
         <div
           style={{
-            padding: "10px 14px",
-            background: "#faf5ff",
-            border: "1px solid #e9d5ff",
-            borderRadius: "6px",
-            marginBottom: 12,
-            fontSize: "13px",
-            color: "#7e22ce",
+            padding: "var(--space-md) var(--space-lg)",
+            background: "var(--color-primary-light)",
+            border: "1px solid var(--color-primary-border)",
+            borderRadius: "var(--radius-md)",
+            marginBottom: "var(--space-md)",
+            fontSize: "var(--font-base)",
+            color: "var(--color-primary)",
           }}
         >
           This whisper has been stitched into a public answer.
@@ -143,16 +143,16 @@ export default function WhisperDetail({
       )}
 
       {canStitch && !showStitchForm && (
-        <div style={{ marginTop: 20 }}>
+        <div style={{ marginTop: "var(--space-2xl)" }}>
           <button
             onClick={() => setShowStitchForm(true)}
             style={{
-              padding: "8px 20px",
-              background: "#7e22ce",
+              padding: "var(--space-sm) var(--space-xl)",
+              background: "var(--color-primary)",
               color: "#fff",
               border: "none",
-              borderRadius: "6px",
-              fontSize: "13px",
+              borderRadius: "var(--radius-md)",
+              fontSize: "var(--font-base)",
               fontWeight: 600,
               cursor: "pointer",
             }}
@@ -165,11 +165,11 @@ export default function WhisperDetail({
       {showStitchForm && (
         <div
           style={{
-            marginTop: 20,
-            padding: "16px",
-            border: "1px solid #e5e7eb",
-            borderRadius: "8px",
-            background: "#fff",
+            marginTop: "var(--space-2xl)",
+            padding: "var(--space-xl)",
+            border: "1px solid var(--color-border)",
+            borderRadius: "var(--radius-lg)",
+            background: "var(--color-surface)",
           }}
         >
           <StitchForm

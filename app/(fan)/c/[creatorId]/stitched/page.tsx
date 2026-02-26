@@ -7,6 +7,7 @@ import { apiClient, ApiError } from "@/lib/api/client";
 import StitchedItem from "@/components/public/StitchedItem";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import ErrorBanner from "@/components/ErrorBanner";
+import EmptyState from "@/components/EmptyState";
 
 export default function CreatorStitchedPage() {
   const params = useParams<{ creatorId: string }>();
@@ -53,42 +54,43 @@ export default function CreatorStitchedPage() {
   if (loading) return <LoadingSpinner />;
 
   return (
-    <div style={{ maxWidth: 680, margin: "0 auto", padding: "24px 16px" }}>
+    <div style={{ maxWidth: 680, margin: "0 auto" }}>
       <h1
         style={{
-          fontSize: "22px",
+          fontSize: "var(--font-2xl)",
           fontWeight: 700,
-          color: "#1f2937",
-          marginBottom: 6,
+          color: "var(--color-text)",
+          marginBottom: "var(--space-xs)",
         }}
       >
         Stitched Answers
       </h1>
       <p
         style={{
-          fontSize: "13px",
-          color: "#9ca3af",
-          marginBottom: 20,
+          fontSize: "var(--font-base)",
+          color: "var(--color-text-faint)",
+          marginBottom: "var(--space-2xl)",
         }}
       >
         Public answers curated by the creator. Fan identity is never shown.
       </p>
 
       {error && (
-        <div style={{ marginBottom: 16 }}>
+        <div style={{ marginBottom: "var(--space-lg)" }}>
           <ErrorBanner message={error} onRetry={fetchStitches} />
         </div>
       )}
 
       {stitches.length === 0 && !error && (
-        <p style={{ color: "#9ca3af", fontSize: "14px" }}>
-          No stitched answers yet.
-        </p>
+        <EmptyState message="No stitched answers yet." />
       )}
 
-      {stitches.map((s) => (
-        <StitchedItem key={s.id} stitch={s} />
-      ))}
+      <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-lg)" }}>
+        {stitches.map((s) => (
+          <StitchedItem key={s.id} stitch={s} />
+        ))}
+      </div>
     </div>
   );
 }
+

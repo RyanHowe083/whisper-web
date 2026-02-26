@@ -15,9 +15,8 @@ export default function FanInboxItem({ item }: FanInboxItemProps) {
   return (
     <div
       style={{
-        padding: "14px 16px",
-        borderBottom: "1px solid #f3f4f6",
-        background: "#fff",
+        padding: "var(--space-lg)",
+        borderBottom: "1px solid var(--color-border-light)",
       }}
     >
       <div
@@ -25,7 +24,7 @@ export default function FanInboxItem({ item }: FanInboxItemProps) {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          marginBottom: 6,
+          marginBottom: "var(--space-sm)",
         }}
       >
         <StatusBadge status={item.status} />
@@ -34,11 +33,11 @@ export default function FanInboxItem({ item }: FanInboxItemProps) {
 
       <p
         style={{
-          fontSize: "14px",
-          color: "#374151",
+          fontSize: "var(--font-md)",
+          color: "var(--color-text-secondary)",
           margin: 0,
-          lineHeight: 1.5,
-          marginBottom: 8,
+          lineHeight: "var(--line-normal)",
+          marginBottom: "var(--space-md)",
         }}
       >
         {preview}
@@ -47,31 +46,31 @@ export default function FanInboxItem({ item }: FanInboxItemProps) {
       {item.replyMessage && (
         <div
           style={{
-            padding: "10px 12px",
-            background: "#f0fdf4",
-            border: "1px solid #bbf7d0",
-            borderRadius: "6px",
-            marginBottom: 8,
+            padding: "var(--space-md)",
+            background: "var(--color-success-light)",
+            border: "1px solid var(--color-success-border)",
+            borderRadius: "var(--radius-md)",
+            marginBottom: "var(--space-sm)",
           }}
         >
           <div
             style={{
-              fontSize: "11px",
+              fontSize: "var(--font-xs)",
               fontWeight: 600,
-              color: "#15803d",
+              color: "var(--color-success)",
               textTransform: "uppercase",
               letterSpacing: "0.5px",
-              marginBottom: 4,
+              marginBottom: "var(--space-xs)",
             }}
           >
             Creator Reply
           </div>
           <p
             style={{
-              fontSize: "13px",
-              color: "#1f2937",
+              fontSize: "var(--font-base)",
+              color: "var(--color-text)",
               margin: 0,
-              lineHeight: 1.5,
+              lineHeight: "var(--line-normal)",
             }}
           >
             {item.replyMessage}
@@ -82,9 +81,9 @@ export default function FanInboxItem({ item }: FanInboxItemProps) {
       {item.creatorReaction && (
         <div
           style={{
-            fontSize: "12px",
-            color: "#92400e",
-            marginBottom: 6,
+            fontSize: "var(--font-sm)",
+            color: "var(--color-warn)",
+            marginBottom: "var(--space-sm)",
           }}
         >
           ✦ Creator reacted: {item.creatorReaction}
@@ -96,13 +95,13 @@ export default function FanInboxItem({ item }: FanInboxItemProps) {
           href={`/c/${encodeURIComponent(item.creatorId)}/stitched`}
           style={{
             display: "inline-block",
-            fontSize: "12px",
-            color: "#7e22ce",
+            fontSize: "var(--font-sm)",
+            color: "var(--color-primary)",
             fontWeight: 600,
             textDecoration: "none",
-            padding: "4px 10px",
-            background: "#faf5ff",
-            borderRadius: "4px",
+            padding: "var(--space-xs) var(--space-md)",
+            background: "var(--color-primary-light)",
+            borderRadius: "var(--radius-sm)",
           }}
         >
           View Stitched Answer →

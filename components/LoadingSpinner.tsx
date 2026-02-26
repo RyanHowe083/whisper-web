@@ -5,9 +5,9 @@ export default function LoadingSpinner() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        padding: "48px",
-        color: "#6b7280",
-        fontSize: "14px",
+        padding: "var(--space-4xl)",
+        color: "var(--color-text-muted)",
+        fontSize: "var(--font-md)",
       }}
     >
       Loading…

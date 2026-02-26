@@ -7,6 +7,7 @@ import WhisperListItem from "@/components/creator/WhisperListItem";
 import WhisperDetail from "@/components/creator/WhisperDetail";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import ErrorBanner from "@/components/ErrorBanner";
+import EmptyState from "@/components/EmptyState";
 
 export default function CreatorInboxPage() {
   const [whispers, setWhispers] = useState<WhisperResponse[]>([]);
@@ -47,47 +48,45 @@ export default function CreatorInboxPage() {
   if (loading) return <LoadingSpinner />;
 
   return (
-    <div style={{ maxWidth: 1100, margin: "0 auto", padding: "24px 16px" }}>
+    <div style={{ maxWidth: 1100, margin: "0 auto" }}>
       <h1
         style={{
-          fontSize: "22px",
+          fontSize: "var(--font-2xl)",
           fontWeight: 700,
-          color: "#1f2937",
-          marginBottom: 20,
+          color: "var(--color-text)",
+          marginBottom: "var(--space-xl)",
         }}
       >
         Creator Inbox
       </h1>
 
       {error && (
-        <div style={{ marginBottom: 16 }}>
+        <div style={{ marginBottom: "var(--space-lg)" }}>
           <ErrorBanner message={error} onRetry={fetchWhispers} />
         </div>
       )}
 
       {whispers.length === 0 && !error && (
-        <p style={{ color: "#9ca3af", fontSize: "14px" }}>
-          No whispers yet. Whispers from fans will appear here.
-        </p>
+        <EmptyState message="No whispers yet. Whispers from fans will appear here." />
       )}
 
       {whispers.length > 0 && (
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: selected ? "380px 1fr" : "1fr",
-            border: "1px solid #e5e7eb",
-            borderRadius: "8px",
+            gridTemplateColumns: selected ? "360px 1fr" : "1fr",
+            border: "1px solid var(--color-border)",
+            borderRadius: "var(--radius-lg)",
             overflow: "hidden",
-            background: "#fff",
-            minHeight: 400,
+            background: "var(--color-surface)",
+            minHeight: 420,
           }}
         >
           <div
             style={{
-              borderRight: selected ? "1px solid #e5e7eb" : "none",
+              borderRight: selected ? "1px solid var(--color-border)" : "none",
               overflowY: "auto",
-              maxHeight: "70vh",
+              maxHeight: "72vh",
             }}
           >
             {whispers.map((w) => (
@@ -101,7 +100,7 @@ export default function CreatorInboxPage() {
           </div>
 
           {selected && (
-            <div style={{ overflowY: "auto", maxHeight: "70vh" }}>
+            <div style={{ overflowY: "auto", maxHeight: "72vh" }}>
               <WhisperDetail
                 key={selected.id}
                 whisper={selected}
@@ -115,3 +114,4 @@ export default function CreatorInboxPage() {
     </div>
   );
 }
+
