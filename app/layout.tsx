@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import AppHeader from "@/components/AppHeader";
 import DevTools from "@/components/DevTools";
 import "./globals.css";
 
@@ -15,7 +16,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        {children}
+        <AppHeader />
+        <main style={{ padding: "var(--space-2xl) var(--space-lg)" }}>
+          {children}
+        </main>
         <DevTools />
       </body>
     </html>

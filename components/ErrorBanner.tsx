@@ -9,29 +9,38 @@ export default function ErrorBanner({ message, onRetry }: ErrorBannerProps) {
   return (
     <div
       style={{
-        padding: "12px 16px",
-        background: "#fef2f2",
-        border: "1px solid #fecaca",
-        borderRadius: "8px",
-        color: "#991b1b",
+        padding: "var(--space-md) var(--space-lg)",
+        background: "var(--color-error-light)",
+        border: "1px solid var(--color-error-border)",
+        borderRadius: "var(--radius-lg)",
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        fontSize: "14px",
+        gap: "var(--space-md)",
       }}
     >
-      <span>{message}</span>
+      <span
+        style={{
+          fontSize: "var(--font-md)",
+          color: "var(--color-error)",
+          lineHeight: "var(--line-normal)",
+        }}
+      >
+        {message}
+      </span>
       {onRetry && (
         <button
           onClick={onRetry}
           style={{
-            background: "#991b1b",
-            color: "#fff",
-            border: "none",
-            borderRadius: "4px",
-            padding: "4px 12px",
+            background: "transparent",
+            color: "var(--color-error)",
+            border: "1px solid var(--color-error-border)",
+            borderRadius: "var(--radius-md)",
+            padding: "var(--space-xs) var(--space-md)",
             cursor: "pointer",
-            fontSize: "13px",
+            fontSize: "var(--font-base)",
+            fontWeight: 500,
+            whiteSpace: "nowrap",
           }}
         >
           Retry

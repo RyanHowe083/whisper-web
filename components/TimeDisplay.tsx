@@ -14,9 +14,13 @@ export default function TimeDisplay({ iso }: TimeDisplayProps) {
   return (
     <time
       dateTime={iso}
-      style={{ fontSize: "12px", color: "#9ca3af" }}
+      style={{
+        fontSize: "var(--font-sm)",
+        color: "var(--color-text-faint)",
+      }}
     >
       {formatted}
     </time>
   );
 }
+

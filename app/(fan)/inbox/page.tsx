@@ -6,6 +6,7 @@ import { apiClient, ApiError } from "@/lib/api/client";
 import FanInboxItem from "@/components/fan/FanInboxItem";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import ErrorBanner from "@/components/ErrorBanner";
+import EmptyState from "@/components/EmptyState";
 
 export default function FanInboxPage() {
   const [items, setItems] = useState<FanInboxItemResponse[]>([]);
@@ -36,52 +37,54 @@ export default function FanInboxPage() {
   if (loading) return <LoadingSpinner />;
 
   return (
-    <div style={{ maxWidth: 680, margin: "0 auto", padding: "24px 16px" }}>
+    <div style={{ maxWidth: 680, margin: "0 auto" }}>
       <h1
         style={{
-          fontSize: "22px",
+          fontSize: "var(--font-2xl)",
           fontWeight: 700,
-          color: "#1f2937",
-          marginBottom: 20,
+          color: "var(--color-text)",
+          marginBottom: "var(--space-xl)",
         }}
       >
         Your Inbox
       </h1>
 
       {error && (
-        <div style={{ marginBottom: 16 }}>
+        <div style={{ marginBottom: "var(--space-lg)" }}>
           <ErrorBanner message={error} onRetry={fetchInbox} />
         </div>
       )}
 
       {items.length === 0 && !error && (
-        <p style={{ color: "#9ca3af", fontSize: "14px" }}>
-          No updates yet. Whispers you send will appear here with their status.
-        </p>
+        <EmptyState message="No updates yet. Whispers you send will appear here with their status." />
       )}
 
-      <div
-        style={{
-          border: items.length > 0 ? "1px solid #e5e7eb" : "none",
-          borderRadius: "8px",
-          overflow: "hidden",
-        }}
-      >
-        {items.map((item) => (
-          <FanInboxItem key={item.whisperId} item={item} />
-        ))}
-      </div>
+      {items.length > 0 && (
+        <div
+          style={{
+            border: "1px solid var(--color-border)",
+            borderRadius: "var(--radius-lg)",
+            overflow: "hidden",
+            background: "var(--color-surface)",
+          }}
+        >
+          {items.map((item) => (
+            <FanInboxItem key={item.whisperId} item={item} />
+          ))}
+        </div>
+      )}
 
-      <div
+      <p
         style={{
-          marginTop: 24,
-          fontSize: "12px",
-          color: "#9ca3af",
+          marginTop: "var(--space-3xl)",
+          fontSize: "var(--font-sm)",
+          color: "var(--color-text-faint)",
           textAlign: "center",
         }}
       >
         Whispers are private. Only the creator sees them.
-      </div>
+      </p>
     </div>
   );
 }
+
