@@ -14,12 +14,21 @@ function subscribeStorage(callback: () => void): () => void {
   return () => window.removeEventListener("storage", callback);
 }
 
+let cachedIdentity: DevIdentity = { userId: null, creatorId: null };
+
 function getIdentitySnapshot(): DevIdentity {
-  return getDevIdentity();
+  const next = getDevIdentity();
+  if (
+    next.userId !== cachedIdentity.userId ||
+    next.creatorId !== cachedIdentity.creatorId
+  ) {
+    cachedIdentity = next;
+  }
+  return cachedIdentity;
 }
 
 function getServerIdentitySnapshot(): DevIdentity {
-  return { userId: null, creatorId: null };
+  return cachedIdentity;
 }
 
 export default function DevIdentityPanel() {

@@ -9,12 +9,21 @@ function subscribe(callback: () => void): () => void {
   return () => window.removeEventListener("storage", callback);
 }
 
+let cachedSnapshot: DevIdentity = { userId: null, creatorId: null };
+
 function getSnapshot(): DevIdentity {
-  return getDevIdentity();
+  const next = getDevIdentity();
+  if (
+    next.userId !== cachedSnapshot.userId ||
+    next.creatorId !== cachedSnapshot.creatorId
+  ) {
+    cachedSnapshot = next;
+  }
+  return cachedSnapshot;
 }
 
 function getServerSnapshot(): DevIdentity {
-  return { userId: null, creatorId: null };
+  return cachedSnapshot;
 }
 
 export default function DevBanner() {
